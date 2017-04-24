@@ -1,0 +1,15 @@
+<% action_url = action == :new ? subs_url : sub_url(sub) %>
+
+<form action="<%= action_url %>" method="POST">
+  <%= auth_token %>
+  <% if action == :edit %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+  <label>Title:
+    <input type="text" name="sub[title]" value="<%= sub.title %>">
+  </label>
+  <label>Description:
+    <input type="text" name="sub[description]" value="<%= sub.description %>">
+  </label>
+  <input type="submit" value="<%= action == :new ? "Create Sub" : "Edit Sub" %>">
+</form>

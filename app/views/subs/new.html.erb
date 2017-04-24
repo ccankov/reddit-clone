@@ -1,2 +1,7 @@
-<h1>Subs#new,</h1>
-<p>Find me in app/views/subs/new,.html.erb</p>
+<h1>Create a new sub</h1>
+
+<%= render 'errors' %>
+
+<%= render 'form', action: :new, sub: @sub %>
+
+<%= link_to 'Sub Index', subs_url %>
