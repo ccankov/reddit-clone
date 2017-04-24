@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find_by(id: params[:id])
     if @post
-      @comments = @post.comments.where(parent_comment_id: nil)
+      @all_comments = @post.comments_by_parent_id
       render :show
     else
       redirect_to subs_url

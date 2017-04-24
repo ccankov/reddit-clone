@@ -1,8 +1,0 @@
-<li>
-  <span><%= link_to 'Comment', comment_url(comment) %> by: <%= comment.author.username %></span>
-  <br>
-  <span><%= comment.content %></span>
-  <ul>
-    <%= render comment.child_comments %>
-  </ul>
-</li>
