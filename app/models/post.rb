@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-  validates :title, :author, :sub, presence: true
+  validates :title, :author, presence: true
+  validate :at_least_one_sub
 
   belongs_to :author,
     primary_key: :id,
@@ -9,9 +10,16 @@ class Post < ApplicationRecord
   has_many :post_subs,
     primary_key: :id,
     foreign_key: :post_id,
-    class_name: :PostSub
+    class_name: :PostSub,
+    inverse_of: :post
 
   has_many :subs,
     through: :post_subs,
     source: :sub
+
+  def at_least_one_sub
+    if subs.length < 1
+      errors[:base] << "Post must have at least one sub"
+    end
+  end
 end

@@ -14,8 +14,15 @@
   <label>Content:
     <input type="text" name="post[content]" value="<%= post.content %>">
   </label>
-  <label>Sub ID:
-    <input type="text" name="post[sub_id]" value="<%= post.sub_id %>">
-  </label>
+  <br>
+  <% Sub.all.each do |sub| %>
+    <label><%= sub.title %>
+      <input type="checkbox"
+             name="post[sub_ids][]"
+             value="<%= sub.id %>"
+             <%= "checked" if post.sub_ids.include?(sub.id) %>>
+    </label>
+  <% end %>
+  <br>
   <input type="submit" value="<%= action == :new ? "Create Post" : "Edit Post" %>">
 </form>
