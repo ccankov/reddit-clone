@@ -17,6 +17,11 @@ class Post < ApplicationRecord
     through: :post_subs,
     source: :sub
 
+  has_many :comments,
+    primary_key: :id,
+    foreign_key: :post_id,
+    class_name: :Comment
+
   def at_least_one_sub
     if subs.length < 1
       errors[:base] << "Post must have at least one sub"
