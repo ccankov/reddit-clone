@@ -1,0 +1,13 @@
+<h1>Add Comment</h1>
+
+<%= render 'errors' %>
+
+<form action="<%= comments_url + "?post_id=#{params[:post_id]}" %>" method="post">
+  <%= auth_token %>
+  <label>Comment:
+    <br>
+    <textarea name="comment[content]" rows="5" cols="50"></textarea>
+  </label>
+  <br>
+  <input type="submit" value="Add Comment">
+</form>

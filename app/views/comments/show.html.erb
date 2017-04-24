@@ -1,0 +1,17 @@
+<p>Comment by: <%= @comment.author.username %></p>
+<p><%= @comment.content %></p>
+
+<form action="<%= comments_url + "?post_id=#{@comment.post_id}&parent_comment_id=#{@comment.id}" %>"
+      method="post">
+  <%= auth_token %>
+  <label>Comment:
+    <br>
+    <textarea name="comment[content]" rows="5" cols="50"></textarea>
+  </label>
+  <br>
+  <input type="submit" value="Add Comment">
+</form>
+
+<ul>
+  <%= render @comments %>
+</ul>
