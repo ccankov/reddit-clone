@@ -49,6 +49,7 @@ class SubsController < ApplicationController
   def show
     @sub = Sub.find_by(id: params[:id])
     if @sub
+      @posts = @sub.posts
       render :show
     else
       redirect_to subs_url

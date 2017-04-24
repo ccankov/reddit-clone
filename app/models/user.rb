@@ -9,6 +9,11 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     class_name: :Sub
 
+  has_many :posts,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :Post
+
   after_initialize :ensure_session_token
 
   def self.generate_session_token

@@ -1,0 +1,18 @@
+<h1>
+  <%= @post.title %>
+  <% if @post.url && @post.url != '' %>
+    (<a href="<%= @post.url %>"><%= @post.url %></a>)
+  <% end %>
+</h1>
+<h2>Author: <%= @post.author.username %></h2>
+
+<p><%= @post.content %></p>
+
+<% if current_user.id == @post.user_id %>
+  <%= button_to 'Delete Post', post_url(@post), method: :delete %>
+<% end %>
+
+<br>
+
+<%= link_to 'Edit Post', edit_post_url(@post) %>
+<%= link_to 'Sub Index', subs_url %>

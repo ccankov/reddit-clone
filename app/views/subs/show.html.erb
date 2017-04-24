@@ -1,9 +1,15 @@
 <h1><%= @sub.title %></h1>
 <h2>Moderator: <%= @sub.moderator.username %></h2>
 <p><%= @sub.description %></p>
-<%= button_to 'Delete Sub', sub_url(@sub), method: :delete %>
 
-<br>
+<% if current_user.id == @sub.user_id %>
+  <%= button_to 'Delete Sub', sub_url(@sub), method: :delete %>
+<% end %>
+
+<h3>Posts:</h3>
+<ul>
+  <%= render @posts %>
+</ul>
 
 <%= link_to 'Edit Sub', edit_sub_url(@sub) %>
 <%= link_to 'Sub Index', subs_url %>

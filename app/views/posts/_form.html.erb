@@ -1,0 +1,21 @@
+<% action_url = action == :new ? posts_url : post_url(post) %>
+
+<form action="<%= action_url %>" method="POST">
+  <%= auth_token %>
+  <% if action == :edit %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+  <label>Title:
+    <input type="text" name="post[title]" value="<%= post.title %>">
+  </label>
+  <label>URL:
+    <input type="text" name="post[url]" value="<%= post.url %>">
+  </label>
+  <label>Content:
+    <input type="text" name="post[content]" value="<%= post.content %>">
+  </label>
+  <label>Sub ID:
+    <input type="text" name="post[sub_id]" value="<%= post.sub_id %>">
+  </label>
+  <input type="submit" value="<%= action == :new ? "Create Post" : "Edit Post" %>">
+</form>
