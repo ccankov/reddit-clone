@@ -27,6 +27,26 @@ class CommentsController < ApplicationController
     end
   end
 
+  def upvote
+    comment = Comment.find_by(id: params[:comment_id])
+    if comment
+      comment.upvote(current_user)
+      redirect_to comment_url(comment)
+    else
+      redirect_back fallback_location: subs_url
+    end
+  end
+
+  def downvote
+    comment = Comment.find_by(id: params[:comment_id])
+    if comment
+      comment.downvote(current_user)
+      redirect_to comment_url(comment)
+    else
+      redirect_back fallback_location: subs_url
+    end
+  end
+
   private
 
   def comment_params

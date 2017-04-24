@@ -1,5 +1,8 @@
-<p>Comment by: <%= @comment.author.username %></p>
+<p>(<%= @comment.vote_sum %>) Comment by: <%= @comment.author.username %></p>
 <p><%= @comment.content %></p>
+
+<%= button_to 'Upvote', comment_upvote_url(@comment), method: :post %>
+<%= button_to 'Downvote', comment_downvote_url(@comment), method: :post %>
 
 <form action="<%= comments_url + "?post_id=#{@comment.post_id}&parent_comment_id=#{@comment.id}" %>"
       method="post">

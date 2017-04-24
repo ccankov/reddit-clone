@@ -1,14 +1,13 @@
 <li>
-  <span><%= link_to 'Comment', comment_url(comment) %> by: <%= comment.author.username %></span>
+  <span>(<%= comment.num_votes %>)</span>
+  <span><%= link_to 'Comment', comment_url(comment) %> by: <%= comment.author_name %></span>
   <br>
   <span>Created at: <%= comment.created_at %></span>
   <br>
   <span><%= comment.content %></span>
   <ul>
     <% all_comments[comment.id].each do |c2| %>
-      <% if c2.parent_comment_id == comment.id %>
-        <%= render 'comment', comment: c2, all_comments: all_comments %>
-      <% end %>
+      <%= render 'comment', comment: c2, all_comments: all_comments %>
     <% end %>
   </ul>
 </li>

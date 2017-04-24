@@ -15,4 +15,11 @@ class Sub < ApplicationRecord
   has_many :posts,
     through: :post_subs,
     source: :post
+
+  def posts_by_vote
+    posts.left_outer_joins(:votes).joins(:author)
+         .group('posts.id, users.username')
+         .order('SUM(votes.value) DESC')
+         .select('posts.*, SUM(votes.value) as num_votes')
+  end
 end

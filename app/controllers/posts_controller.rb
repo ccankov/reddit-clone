@@ -56,6 +56,26 @@ class PostsController < ApplicationController
     redirect_to subs_url
   end
 
+  def upvote
+    post = Post.find_by(id: params[:post_id])
+    if post
+      post.upvote(current_user)
+      redirect_to post_url(post)
+    else
+      redirect_back fallback_location: subs_url
+    end
+  end
+
+  def downvote
+    post = Post.find_by(id: params[:post_id])
+    if post
+      post.downvote(current_user)
+      redirect_to post_url(post)
+    else
+      redirect_back fallback_location: subs_url
+    end
+  end
+
   private
 
   def post_params

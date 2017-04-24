@@ -7,17 +7,26 @@ class User < ApplicationRecord
   has_many :subs,
     primary_key: :id,
     foreign_key: :user_id,
-    class_name: :Sub
+    class_name: :Sub,
+    dependent: :destroy
 
   has_many :posts,
     primary_key: :id,
     foreign_key: :user_id,
-    class_name: :Post
+    class_name: :Post,
+    dependent: :destroy
 
   has_many :comments,
     primary_key: :id,
     foreign_key: :user_id,
-    class_name: :Comment
+    class_name: :Comment,
+    dependent: :destroy
+
+  has_many :votes,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :Vote,
+    dependent: :destroy
 
   after_initialize :ensure_session_token
 

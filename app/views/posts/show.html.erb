@@ -8,6 +8,9 @@
 
 <p><%= @post.content %></p>
 
+<%= button_to 'Upvote', post_upvote_url(@post), method: :post %>
+<%= button_to 'Downvote', post_downvote_url(@post), method: :post %>
+
 <% if current_user.id == @post.user_id %>
   <%= button_to 'Delete Post', post_url(@post), method: :delete %>
 <% end %>
